@@ -9,7 +9,11 @@ pinkthing.pos = 35,450
 butt_on = Actor("butt_on")
 butt_on.pos =(WIDTH/2, HEIGHT/2 +160)
 
-score = 19
+space = Actor('background_space_alien')
+space.pos = -400,0
+
+
+score = 0
 
 speed = 6
 
@@ -25,8 +29,9 @@ def draw():
 
     if game_status == 1:
         screen.clear()
-        screen.fill((6, 209, 255))
-        screen.blit('lvl_2_mucode_game', (0, -200))
+        space.draw()
+        #screen.fill((6, 209, 255))
+        #screen.blit('lvl_2_mucode_game', (0, -200))
         screen.draw.text("Alien Clicker", (5,25), angle = 5, color="red", fontname="blob", fontsize=40, background = (255,191,0), owidth = 2, ocolor = "yellow")
         screen.draw.text("made by aarav", (5, 90), angle = -5, color="red", fontname="blob", fontsize=20, background = (255,191,0), owidth = 2, ocolor = "yellow")
         pinkthing.draw()
@@ -36,9 +41,9 @@ def draw():
         screen.draw.text('Reach score 20 to win!!!', (560, 130), color = "red", fontsize=25)
 
         if hurt=='hurt':
-            screen.draw.text("STOP TOUCHING ME!!!", center = (WIDTH/2, HEIGHT/2), color = "blue", fontname="pencil", fontsize=30)
+            screen.draw.text("STOP TOUCHING ME!!!", center = (WIDTH/2, HEIGHT/2), color = "red", fontname="pencil", fontsize=30)
         elif hurt == 'miss':
-            screen.draw.text("HAHAHA u didnt touch me", center = (WIDTH/2, HEIGHT/2), color = "blue", fontname="pencil", fontsize=30)
+            screen.draw.text("HAHAHA u didnt touch me", center = (WIDTH/2, HEIGHT/2), color = "red", fontname="pencil", fontsize=30)
 
         if lives == 0:
             game_status = 0
@@ -69,6 +74,7 @@ def update():
     if pinkthing.left > 800:
         pinkthing.left = 0
         pinkthing.pos=35,random.randint(250,450)
+    space.left+=0.2
 
 def on_mouse_down(pos,button):
     global hurt, score, speed, lives,game_status
