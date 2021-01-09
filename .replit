@@ -1,2 +1,2 @@
-language = "python3"
-run = "python game.py"
+run="pgzrun main.py"
+onBoot="sleep 5s && pkill pyls"
